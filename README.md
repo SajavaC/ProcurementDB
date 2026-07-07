@@ -13,7 +13,7 @@
 ## Database Relationship Diagram
 Below is the optimized entity-relationship schema designed for high-performance querying and cross-functional visibility:
 
-![ProcurementDB Schema](ProcurementDB_Schema_HighRes.png)
+![ProcurementDB Schema](relationship_diagram.png)
 
 ---
 
