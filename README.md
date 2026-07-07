@@ -51,7 +51,8 @@ Below is the optimized entity-relationship schema designed for high-performance 
 The `queries/` folder contains structural SQL scripts engineered to automate operational analysis and financial auditing:
 
 * **`Recent_Order_Price.sql`**: Employs a complex correlated subquery (`MAX(PO_Date)`) to extract the absolute latest historical purchase price per SKU and dynamically scales unit prices to case costs.
-* **`WIP_Lot_Tracking.sql`**: An advanced multi-join stock balance script using structured subquery aggregations (`SUM` + `GROUP BY` via `LEFT JOIN`) to calculate real-time inventory balances by auditing inbound lot receipts against outbound ex-warehouse tags.
+* **`Order_Lot_Tracker.sql`**: Establishes an end-to-end audit trail tracking the complete lineage of individual batches from the initial Purchase Order, through freight arrivals, down to final warehouse status and distribution exceptions.
+* **`WIP_Lot_Tracking.sql`**: An advanced dynamic stock balance script that sits on top of the lot tracker. It utilizes structured subquery aggregations (`SUM` + `GROUP BY` via `LEFT JOIN`) to reconcile total inbound lot receipts against outbound ex-warehouse tracking tags to calculate live, remaining in-stock balances.
 * **`Remaining_Labels.sql`**: A vendor asset audit query designed to reconcile prepaid label stocks. By cross-referencing upstream bulk orders against cumulative downstream PO consumption, it automatically flags discrepancies to prevent supplier material shrinkage.
 * **`Last_Six_Months_Price.sql`**: Leverages time-series filtering functions (`DateAdd`) to provide rolling 6-month product margin variance analysis.
 * **`Lot_Numbers_List.sql`**: Generates a clean traceability matrix mapping specific batches back to container arrival dates using optimized left outer joins.
