@@ -45,33 +45,129 @@ Below is the optimized entity-relationship schema designed for high-performance 
 
 ---
 
-## Data Dictionary & Schema Architecture
+## Data Dictionary & Schema
 
-### 1. Procurement & Order Ledger
-* **`Orders`**: Main purchase ledger managing total order finances across multiple currencies and milestone dates.
-  * `IPPO`: Inventory Planner order number.
-  * `VendorPO` / `Invoice`: Official tracking references from supplier invoices.
-  * `Amount_CAD`: Fully inclusive landed cost (including discounts, freight, and taxes).
-  * `Proc_fee_CAD` / `Proc_fee_USD`: Administrative and customs processing fees.
-  * `DP_Date` / `BP_Date`: Deposit Payment and Balance Payment milestone tracking.
-* **`ORD_Det`**: Order line items configured for precise cost breakdown auditing.
-  * `UP_b4DT`: Unit Price (CAD) before individual product discount and tax.
-  * `UP_b4T`: Unit Price (CAD) including discount but before tax.
-  * `UP`: Unit Price (CAD) inclusive of all individual items' discount and tax.
-  * `SI`: Shipping Inclusion Note (Tracks whether a vendor is unable to break down shipping costs, isolating bulk logistics from product valuation).
+The database consists of the following key tables:
 
-### 2. Logistics & Inventory Auditing
-* **`Vendors`**: Master directory of international suppliers with operational constraints.
-  * `Production_LT`: Manufacturing lead time metrics.
-  * `Std_Shipping` / `Fast_Sea_Shipping` / `Air_Shipping`: Multi-modal freight duration parameters used for demand planning.
-* **`Freight`**: Shipment manifest tracking actual quantities dispatched against historical lines.
-  * `frtQty`: Quantity physically shipped per consignment.
-  * `Ship_Date` / `Arr_Date`: Actual shipping and port arrival timestamps.
-* **`Lot`**: Operational registry pairing batch lots to physical freight arrivals (`LOT number or Batch number`).
-* **`POTracking`**: Outbound logistics log detailing ex-warehouse distribution and exception handling (`Reason`, `Expiration`, `Warehouse`).
+### 1. `Vendors`
+Stores supplier information and shipping lead times.
 
-### 3. Vendor-Managed Prepaid Assets
-* **`Labels`**: Monitors proprietary asset inventories (e.g., prepaid food nutrition labels) bulk-printed and stored at third-party contractor facilities. Tracks prepaid `Qty`, purchase `Price`, and unit cost (`UP`) to ensure financial accountability.
+* **`ID`** (AutoNumber / PK): Unique vendor identifier.
+* **`V_Name`** (Short Text): Vendor name.
+* **`Country`** (Short Text): Vendor location.
+* **`Production_LT`** (Number): Production lead time.
+* **`Std_Shipping`** (Number): Standard sea shipping lead time.
+* **`Fast_Sea_Shipping`** (Number): Expedited sea shipping lead time.
+* **`Air_Shipping`** (Number): Air freight lead time.
+
+---
+
+### 2. `Products`
+
+Stores master information for purchased products.
+
+* **`ID`** (AutoNumber / PK): Unique product identifier.
+* **`P_Name`** (Short Text): Product name.
+* **`Unit`** (Number): Units per case.
+* **`Food`** (Short Text): Indicates whether the product is food.
+* **`Key_V`** (Number): Primary supplier of the product.
+
+---
+
+### 3. `Orders`
+
+Stores purchase order information and order-level financial records.
+
+* **`ID`** (AutoNumber / PK): Unique purchase order identifier.
+* **`IPPO`** (Short Text): Internal purchase order number.
+* **`VendorPO`** (Short Text): Supplier purchase order number.
+* **`Invoice`** (Short Text): Supplier invoice number.
+* **`PO_Date`** (Date/Time): Purchase order date.
+* **`VendorID`** (Number / FK): Links to the supplier.
+* **`Amount_CAD`** (Number): Total order amount in CAD.
+* **`Discount_CAD`** (Number): Total discount applied.
+* **`Freight_CAD`** (Number): Freight cost.
+* **`Tax_CAD`** (Number): Tax amount.
+* **`Proc_fee_CAD`** (Number): Processing fee.
+* **`Amount_USD`** (Number): Total order amount in USD.
+* **`Discount_USD`** (Number): Discount in USD.
+* **`Freight_USD`** (Number): Freight cost in USD.
+* **`Tax_USD`** (Number): Tax amount in USD.
+* **`Proc_fee_USD`** (Number): Processing fee in USD.
+* **`Exchange`** (Number): Exchange rate.
+* **`DP_Date`** (Date/Time): Deposit payment date.
+* **`BP_Date`** (Date/Time): Balance payment date.
+* **`Notes`** (Long Text): Additional purchasing notes.
+
+---
+
+### 4. `ORD_Det`
+
+Stores line-item details for each purchase order.
+
+* **`ID`** (AutoNumber / PK): Unique line item identifier.
+* **`ORD_ID`** (Number / FK): Purchase order reference.
+* **`Product_ID`** (Number / FK): Purchased product.
+* **`Qty`** (Number): Quantity ordered.
+* **`UP_b4DT`** (Number): Unit price before discount and tax.
+* **`UP_b4T`** (Number): Unit price after discount but before tax.
+* **`UP`** (Number): Final unit price including discount and tax.
+* **`SI`** (Short Text): Indicates whether shipping is included in the unit price.
+
+---
+
+### 5. `Freight`
+
+Stores shipment information for each purchase order line.
+
+* **`ID`** (AutoNumber / PK): Unique shipment identifier.
+* **`OD_ID`** (Number / FK): Purchase order line reference.
+* **`Tracking_no`** (Short Text): Shipment tracking number.
+* **`Method`** (Short Text): Shipping method.
+* **`frtQty`** (Number): Quantity shipped.
+* **`Ship_Date`** (Date/Time): Shipment departure date.
+* **`Arr_Date`** (Date/Time): Shipment arrival date.
+
+---
+
+### 6. `Lot`
+
+Stores lot or batch information for received inventory.
+
+* **`ID`** (AutoNumber / PK): Unique record identifier.
+* **`Freight_ID`** (Number / FK): Shipment reference.
+* **`LOT`** (Short Text): Lot or batch number.
+* **`Qty`** (Number): Quantity received for the lot.
+
+---
+
+### 7. `POTracking`
+
+Tracks inventory movements after products arrive at the warehouse.
+
+* **`ID`** (AutoNumber / PK): Unique tracking record.
+* **`Reason`** (Short Text): Reason for inventory movement.
+* **`Description`** (Short Text): Additional description.
+* **`Quantity`** (Number): Quantity moved.
+* **`LOT`** (Short Text): Related lot number.
+* **`Expiration`** (Date/Time): Expiration date.
+* **`Receiving`** (Date/Time): Receiving date.
+* **`PickUP`** (Date/Time): Warehouse pickup date.
+* **`Warehouse`** (Short Text): Warehouse location.
+
+---
+
+### 8. `Labels`
+
+Tracks prepaid product labels stored at suppliers.
+
+* **`ID`** (AutoNumber / PK): Unique label record.
+* **`L_Name`** (Short Text): Label name.
+* **`ProductID`** (Number / FK): Associated product.
+* **`PurchaseDate`** (Date/Time): Purchase date.
+* **`Qty`** (Number): Quantity purchased.
+* **`Price`** (Number): Total purchase cost.
+* **`UP`** (Number): Unit price.
 
 ---
 
