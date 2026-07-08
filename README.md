@@ -7,12 +7,34 @@ Note: All sensitive business data, proprietary store identities, and financial m
 ---
 
 ## Project Overview
-**ProcurementDB** is a production-ready relational database schema designed to streamline international procurement, multi-currency freight tracking, and supplier-managed inventory compliance. Built with a deep focus on supply chain data integrity, this database serves as a robust auditing tool to reconcile financial variances (such as item-level discounts and multi-tiered tax calculations) and eliminate material waste across global vendor networks.
 
-### Core Business Capabilities
-* **Vendor-Managed Asset Auditing**: Reconciles bulk-prepaid packaging labels stored at supplier sites against historical order consumption to prevent shrinkage.
-* **Granular Cost Reconciliations**: Supports multi-currency tracking (CAD/USD) with dynamic field handling for pre-discount, pre-tax, and fully inclusive totals.
-* **End-to-End Lot Lineage**: Connects Purchase Orders, freight manifests, cargo arrival schedules, and outbound warehouse distributions to ensure total batch traceability.
+This database was built to centralize purchasing information and improve visibility across the procurement process.
+
+Instead of managing purchase orders, supplier information, freight records, lot numbers, and cost calculations in separate spreadsheets, this relational database consolidates them into a single system. It supports purchasing activities from supplier selection through freight arrival while maintaining product-level cost history and lot traceability.
+
+In addition to serving as a purchasing record, the database also provides operational reports that simplify price reviews, lot tracking, and inventory auditing.
+
+This database was not created as a technical exercise. It was built to organize procurement data in a way that makes day-to-day supply chain work more efficient and easier to manage.
+
+---
+
+## Core Business Capabilities
+
+### **Purchasing & Cost Tracking**
+
+Maintains complete purchasing records, including supplier quotations, purchase orders, landed costs, taxes, freight charges, and historical pricing. This provides a centralized view of procurement costs for future purchasing decisions.
+
+### **Lot Traceability**
+
+Tracks products from purchase orders through freight arrivals to individual lot numbers, making it possible to trace inventory batches and monitor remaining quantities after warehouse distribution.
+
+### **Supplier Performance Reference**
+
+Stores supplier lead times and available shipping methods, providing a historical reference for procurement planning and supplier evaluation.
+
+### **Vendor Asset Management**
+
+Tracks prepaid packaging labels stored at suppliers and compares purchased quantities with actual usage, helping monitor remaining inventory and reduce unnecessary reorders.
 
 ---
 
@@ -53,12 +75,30 @@ Below is the optimized entity-relationship schema designed for high-performance 
 
 ---
 
-## Advanced SQL Capabilities (`queries/`)
-The `queries/` folder contains structural SQL scripts engineered to automate operational analysis and financial auditing:
+## SQL Reports (`queries/`)
 
-* **`Recent_Order_Price.sql`**: Employs a complex correlated subquery (`MAX(PO_Date)`) to extract the absolute latest historical purchase price per SKU and dynamically scales unit prices to case costs.
-* **`Order_Lot_Tracker.sql`**: Establishes an end-to-end audit trail tracking the complete lineage of individual batches from the initial Purchase Order, through freight arrivals, down to final warehouse status and distribution exceptions.
-* **`WIP_Lot_Tracking.sql`**: An advanced dynamic stock balance script that sits on top of the lot tracker. It utilizes structured subquery aggregations (`SUM` + `GROUP BY` via `LEFT JOIN`) to reconcile total inbound lot receipts against outbound ex-warehouse tracking tags to calculate live, remaining in-stock balances.
-* **`Remaining_Labels.sql`**: A vendor asset audit query designed to reconcile prepaid label stocks. By cross-referencing upstream bulk orders against cumulative downstream PO consumption, it automatically flags discrepancies to prevent supplier material shrinkage.
-* **`Last_Six_Months_Price.sql`**: Leverages time-series filtering functions (`DateAdd`) to provide rolling 6-month product margin variance analysis.
-* **`Lot_Numbers_List.sql`**: Generates a clean traceability matrix mapping specific batches back to container arrival dates using optimized left outer joins.
+The SQL queries in this project automate recurring procurement analyses and provide operational reports used during purchasing and inventory reviews.
+
+### `Recent_Order_Price.sql`
+
+Retrieves the most recent purchase price for each product, allowing buyers to quickly review current pricing before placing new orders.
+
+### `Last_Six_Months_Price.sql`
+
+Displays historical purchase prices over the previous six months, making it easier to identify price changes and support supplier negotiations.
+
+### `Lot_Numbers_List.sql`
+
+Lists all received lot numbers together with their arrival dates, providing a quick reference for product traceability.
+
+### `Lot_Tracking.sql`
+
+Calculates the remaining quantity for each lot by comparing inbound receipts with outbound warehouse records.
+
+### `Order_Lot_Tracker.sql`
+
+Connects purchase orders, freight records, lot numbers, and warehouse transactions into a single report, providing complete traceability for each inventory batch.
+
+### `Remaining_Labels.sql`
+
+Compares purchased label quantities with actual usage to estimate remaining inventory held by suppliers.
