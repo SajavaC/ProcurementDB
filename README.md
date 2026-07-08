@@ -171,7 +171,7 @@ Tracks prepaid product labels stored at suppliers.
 
 ---
 
-## SQL Reports (`queries/`)
+## SQL Reports
 
 The SQL queries in this project automate recurring procurement analyses and provide operational reports used during purchasing and inventory reviews.
 
