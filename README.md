@@ -1,5 +1,11 @@
 # ProcurementDB: Supply Chain Purchasing, Freight Tracking & Lot Tracing Database
 
+---
+
+Note: All sensitive business data, proprietary store identities, and financial metrics have been completely randomized, scrubbed, or substituted with sample metrics to strictly comply with non-disclosure agreements (NDA) and protect data privacy.
+
+---
+
 ## Project Overview
 **ProcurementDB** is a production-ready relational database schema designed to streamline international procurement, multi-currency freight tracking, and supplier-managed inventory compliance. Built with a deep focus on supply chain data integrity, this database serves as a robust auditing tool to reconcile financial variances (such as item-level discounts and multi-tiered tax calculations) and eliminate material waste across global vendor networks.
 
