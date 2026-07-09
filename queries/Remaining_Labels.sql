@@ -1,10 +1,13 @@
--- ==============================================================================
--- Description: Reconciles Vendor-Managed Label Inventory (VMI) by calculating 
---              theoretical remaining balances against actual order consumption.
--- Audit Purpose: Performs variance analysis between prepaid label purchases and 
---                production outputs to audit vendor usage and eliminate unexplained 
---                shrinkage or unauthorized waste.
--- ==============================================================================
+-- ==================================================================================================================================
+-- Query Name:
+-- Remaining_Labels
+
+-- Purpose:
+-- Calculates the remaining quantity of prepaid labels by comparing purchased quantities with actual product orders.
+
+-- Business Value:
+-- Helps monitor supplier-managed label inventory, reducing unnecessary purchases and identifying unexpected inventory discrepancies.
+-- ==================================================================================================================================
 
 SELECT 
     Labels.L_Name, 
