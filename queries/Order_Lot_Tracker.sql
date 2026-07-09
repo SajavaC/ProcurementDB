@@ -1,6 +1,16 @@
--- ==============================================================================
--- Description: Full lineage tracker from Purchase Order to Warehouse Lot assignment.
--- ==============================================================================
+-- ================================================================================================================================
+-- Query Name:
+-- Order_Lot_Tracker
+
+-- Purpose:
+-- Connects purchase orders, freight records, lot numbers, and warehouse tracking information into a single traceability report.
+
+-- Business Value:
+-- Provides complete lot traceability from purchasing through warehouse operations, supporting inventory audits and product recalls.
+
+-- Used By:
+-- Lot traceability report
+-- ================================================================================================================================
 
 SELECT 
     Products.P_Name, 
