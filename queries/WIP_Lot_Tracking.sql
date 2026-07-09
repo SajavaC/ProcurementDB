@@ -1,8 +1,16 @@
--- ==============================================================================
--- WORK IN PROGRESS (WIP)
--- Description: Reconciles total lot quantities received against outbound tracking logs
---              to calculate live, remaining in-stock balances.
--- ==============================================================================
+-- ============================================================================================================================
+-- Query Name:
+-- Lot_Tracking
+
+-- Purpose:
+-- Calculates the remaining inventory quantity for each lot by comparing inbound receipts with outbound warehouse transactions.
+
+-- Business Value:
+-- Provides current lot balances for inventory monitoring and traceability.
+
+-- Note:
+-- This query is a work in progress and is intended to support future lot-level inventory tracking.
+-- ============================================================================================================================
 
 SELECT 
     InnerQuery.P_Name, 
