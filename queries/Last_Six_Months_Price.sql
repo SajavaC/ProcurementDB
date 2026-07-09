@@ -1,7 +1,13 @@
--- ==============================================================================
--- Description: Monitors short-term vendor pricing trends over a rolling 
---              6-month historical period using dynamic date calculations.
--- ==============================================================================
+-- ===============================================================================================================
+-- Query Name:
+-- Last_Six_Months_Price
+
+-- Purpose:
+-- Displays the purchase price history for each product over the most recent six months.
+
+-- Business Value:
+-- Provides historical pricing trends that support supplier negotiations, price reviews, and purchasing decisions.
+-- ===============================================================================================================
 
 SELECT 
     Products.P_Name, 
