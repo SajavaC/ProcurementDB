@@ -1,7 +1,13 @@
--- ==============================================================================
--- Description: Extracts full lot identification logs along with cargo arrival 
---              dates using multi-layered left outer joins.
--- ==============================================================================
+-- ========================================================================================================================================
+-- Query Name:
+-- Lot_Numbers_List
+
+-- Purpose:
+-- Lists all received lot numbers together with their corresponding products and arrival dates.
+
+-- Business Value:
+-- Provides a quick reference for product traceability and inventory verification, making it easier to locate specific batches when needed.
+-- ========================================================================================================================================
 
 SELECT 
     Products.P_Name, 
