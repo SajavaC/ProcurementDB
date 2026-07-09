@@ -1,7 +1,13 @@
--- ==============================================================================
--- Description: Advanced Correlated Subquery to dynamically capture the absolute 
---              latest historical purchase price and calculate custom case costs.
--- ==============================================================================
+-- =========================================================================================================================
+-- Query Name:
+-- Recent_Order_Price
+
+-- Purpose:
+-- Retrieves the most recent purchase price for each product and calculates the corresponding case price.
+
+-- Business Value:
+-- Provides buyers with the latest purchasing costs before placing new orders and supports pricing reviews across suppliers.
+-- =========================================================================================================================
 
 SELECT 
     A.P_Name, 
