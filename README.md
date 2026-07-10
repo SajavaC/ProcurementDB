@@ -147,13 +147,13 @@ Tracks inventory movements after products arrive at the warehouse.
 
 * **`ID`** (AutoNumber / PK): Unique tracking record.
 * **`Reason`** (Short Text): Reason for inventory movement.
-* **`Description`** (Short Text): Additional description.
+* **`Description`** (Short Text): Product name.
 * **`Quantity`** (Number): Quantity moved.
 * **`LOT`** (Short Text): Related lot number.
-* **`Expiration`** (Date/Time): Expiration date.
-* **`Receiving`** (Date/Time): Receiving date.
+* **`Expiration`** (Date/Time): Product expiration date.
+* **`Receiving`** (Date/Time): Original inventory receipt date.
 * **`PickUP`** (Date/Time): Warehouse pickup date.
-* **`Warehouse`** (Short Text): Warehouse location.
+* **`Warehouse`** (Short Text): Warehouse name.
 
 ---
 
