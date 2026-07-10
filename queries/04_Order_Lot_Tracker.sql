@@ -7,9 +7,6 @@
 
 -- Business Value:
 -- Provides complete lot traceability from purchasing through warehouse operations, supporting inventory audits and product recalls.
-
--- Used By:
--- Lot traceability report
 -- ================================================================================================================================
 
 SELECT 
