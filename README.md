@@ -187,10 +187,6 @@ Displays historical purchase prices over the previous six months, making it easi
 
 Lists all received lot numbers together with their arrival dates, providing a quick reference for product traceability.
 
-### `Lot_Tracking.sql`
-
-Calculates the remaining quantity for each lot by comparing inbound receipts with outbound warehouse records.
-
 ### `Order_Lot_Tracker.sql`
 
 Connects purchase orders, freight records, lot numbers, and warehouse transactions into a single report, providing complete traceability for each inventory batch.
@@ -198,3 +194,7 @@ Connects purchase orders, freight records, lot numbers, and warehouse transactio
 ### `Remaining_Labels.sql`
 
 Compares purchased label quantities with actual usage to estimate remaining inventory held by suppliers.
+
+### `Lot_Tracking.sql`
+
+Calculates the remaining quantity for each lot by comparing inbound receipts with outbound warehouse records.
