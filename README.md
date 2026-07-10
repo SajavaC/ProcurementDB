@@ -55,7 +55,7 @@ Stores supplier information and shipping lead times.
 * **`ID`** (AutoNumber / PK): Unique vendor identifier.
 * **`V_Name`** (Short Text): Vendor name.
 * **`Country`** (Short Text): Vendor location.
-* **`Production_LT`** (Number): Production lead time.
+* **`Production_LT`** (Number): Standard production lead time.
 * **`Std_Shipping`** (Number): Standard sea shipping lead time.
 * **`Fast_Sea_Shipping`** (Number): Expedited sea shipping lead time.
 * **`Air_Shipping`** (Number): Air freight lead time.
