@@ -179,22 +179,98 @@ The SQL queries in this project automate recurring procurement analyses and prov
 
 Retrieves the most recent purchase price for each product, allowing buyers to quickly review current pricing before placing new orders.
 
+**Output**
+
+One row per **Product**.
+
+| Column | Description |
+|---------|-------------|
+| P_Name | Product name |
+| PO_Date | Most recent purchase order date |
+| UP_b4T | Latest unit price before tax |
+| UP | Latest unit price after tax |
+| SI | Shipping inclusion indicator |
+| Unit | Number of units per case |
+| CasePrice | Calculated case price based on the latest unit cost |
+
 ### `Last_Six_Months_Price.sql`
 
 Displays historical purchase prices over the previous six months, making it easier to identify price changes and support supplier negotiations.
+
+**Output**
+
+One row per **Purchase Order Line** within the last six months.
+
+| Column | Description |
+|---------|-------------|
+| P_Name | Product name |
+| PO_Date | Purchase order date |
+| UP_b4T | Unit price before tax |
+| UP | Unit price after tax |
+| SI | Shipping inclusion indicator |
 
 ### `Lot_Numbers_List.sql`
 
 Lists all received lot numbers together with their arrival dates, providing a quick reference for product traceability.
 
+**Output**
+
+One row per **Lot Number**.
+
+| Column | Description |
+|---------|-------------|
+| P_Name | Product name |
+| LOT | Lot (batch) number |
+| Qty | Quantity received for the lot |
+| Arr_Date | Freight arrival date |
+
 ### `Remaining_Labels.sql`
 
 Compares purchased label quantities with actual usage to estimate remaining inventory held by suppliers.
+
+**Output**
+
+One row per **Label–Product** combination.
+
+| Column | Description |
+|---------|-------------|
+| L_Name | Label name |
+| P_Name | Product associated with the label |
+| Remaining Qty | Estimated remaining prepaid labels after deducting historical usage |
 
 ### `Order_Lot_Tracker.sql`
 
 Connects purchase orders, freight records, lot numbers, and warehouse transactions into a single report, providing complete traceability for each inventory batch.
 
+**Output**
+
+One row per **Lot Movement Record**.
+
+| Column | Description |
+|---------|-------------|
+| P_Name | Product name |
+| PO_Date | Purchase order date |
+| LOT | Lot (batch) number |
+| Description | Warehouse transaction description |
+| Quantity | Quantity moved |
+| Reason | Movement reason (shipment, adjustment, etc.) |
+| Expiration | Product expiration date |
+| Receiving | Warehouse receiving date |
+| PickUP | Warehouse pickup date |
+| Warehouse | Warehouse location |
+
 ### `Lot_Tracking.sql`
 
 Calculates the remaining quantity for each lot by comparing inbound receipts with outbound warehouse records.
+
+**Output**
+
+One row per **Lot Number**.
+
+| Column | Description |
+|---------|-------------|
+| P_Name | Product name |
+| LOT | Lot (batch) number |
+| TotalQty | Total quantity received for the lot |
+| OutboundQty | Total quantity shipped from the lot |
+| InStock | Remaining inventory balance for the lot |
