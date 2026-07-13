@@ -195,6 +195,8 @@ One row per **Product**.
 | Unit | Number of units per case |
 | CasePrice | Calculated case price based on the latest unit cost |
 
+<br>
+
 ### `Last_Six_Months_Price.sql`
 
 Displays historical purchase prices over the previous six months, making it easier to identify price changes and support supplier negotiations.
@@ -211,6 +213,8 @@ One row per **Purchase Order Line** within the last six months.
 | UP | Unit price after tax |
 | SI | Shipping inclusion indicator |
 
+<br>
+
 ### `Lot_Numbers_List.sql`
 
 Lists all received lot numbers together with their arrival dates, providing a quick reference for product traceability.
@@ -226,6 +230,8 @@ One row per **Lot Number**.
 | Qty | Quantity received for the lot |
 | Arr_Date | Freight arrival date |
 
+<br>
+
 ### `Remaining_Labels.sql`
 
 Compares purchased label quantities with actual usage to estimate remaining inventory held by suppliers.
@@ -239,6 +245,8 @@ One row per **Label–Product** combination.
 | L_Name | Label name |
 | P_Name | Product associated with the label |
 | Remaining Qty | Estimated remaining prepaid labels after deducting historical usage |
+
+<br>
 
 ### `Order_Lot_Tracker.sql`
 
@@ -260,6 +268,8 @@ One row per **Lot Movement Record**.
 | Receiving | Warehouse receiving date |
 | PickUP | Warehouse pickup date |
 | Warehouse | Warehouse location |
+
+<br>
 
 ### `Lot_Tracking.sql`
 
