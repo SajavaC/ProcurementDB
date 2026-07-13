@@ -8,19 +8,19 @@ Note: This public version preserves the database design and query logic while re
 
 ## Project Overview
 
-This database was built to centralize purchasing information and improve visibility across the procurement process.
+ProcurementDB was designed to centralize procurement data that was previously scattered across multiple spreadsheets and documents.
 
-Instead of managing purchase orders, supplier information, freight records, lot numbers, and cost calculations in separate spreadsheets, this relational database consolidates them into a single system. It supports purchasing activities from supplier selection through freight arrival while maintaining product-level cost history and lot traceability.
+Rather than managing purchase orders, supplier information, freight records, lot numbers, and cost calculations separately, this database integrates them into a normalized relational model that provides complete visibility across the procurement lifecycle—from supplier selection and purchasing to freight arrival, lot traceability, and warehouse distribution.
 
-In addition to serving as a purchasing record, the database also provides operational reports that simplify price reviews, lot tracking, and inventory auditing.
+Beyond serving as a purchasing record, the database supports day-to-day supply chain decisions through automated reports for supplier price reviews, landed cost analysis, lot tracking, inventory auditing, and vendor-managed asset monitoring.
 
-This database was not created as a technical exercise. It was built to organize procurement data in a way that makes day-to-day supply chain work more efficient and easier to manage.
+More importantly, this project demonstrates my ability to translate fragmented procurement information into a structured data model that improves traceability, data consistency, and operational efficiency.
 
 ---
 
 ## Core Business Capabilities
 
-### **Purchasing & Cost Tracking**
+### **Procurement Cost Management**
 
 Maintains complete purchasing records, including supplier quotations, purchase orders, landed costs, taxes, freight charges, and historical pricing. This provides a centralized view of procurement costs for future purchasing decisions.
 
@@ -28,7 +28,7 @@ Maintains complete purchasing records, including supplier quotations, purchase o
 
 Tracks products from purchase orders through freight arrivals to individual lot numbers, making it possible to trace inventory batches and monitor remaining quantities after warehouse distribution.
 
-### **Supplier Performance Reference**
+### **Supplier Planning Support**
 
 Stores supplier lead times and available shipping methods, providing a historical reference for procurement planning and supplier evaluation.
 
