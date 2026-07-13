@@ -8,13 +8,15 @@ Note: This public version preserves the database design and query logic while re
 
 ## Project Overview
 
-ProcurementDB was designed to centralize procurement data that was previously scattered across multiple spreadsheets and documents.
+This database was designed to centralize procurement data and improve visibility across the entire procurement lifecycle.
 
-Rather than managing purchase orders, supplier information, freight records, lot numbers, and cost calculations separately, this database integrates them into a normalized relational model that provides complete visibility across the procurement lifecycle—from supplier selection and purchasing to freight arrival, lot traceability, and warehouse distribution.
+Instead of managing purchase orders, supplier information, freight records, lot numbers, and cost calculations in separate spreadsheets, this relational database consolidates them into a single normalized system. It supports purchasing activities from supplier selection through freight arrival while maintaining product-level cost history and lot traceability.
 
-Beyond serving as a purchasing record, the database supports day-to-day supply chain decisions through automated reports for supplier price reviews, landed cost analysis, lot tracking, inventory auditing, and vendor-managed asset monitoring.
+The database establishes a single source of truth for procurement activities by connecting purchasing, logistics, lot traceability, and warehouse records into one relational model.
 
-More importantly, this project demonstrates my ability to translate fragmented procurement information into a structured data model that improves traceability, data consistency, and operational efficiency.
+Rather than functioning only as a purchasing record, the database also serves as a decision-support tool through operational reports for supplier price reviews, lot tracking, inventory auditing, and purchasing planning.
+
+More importantly, this project demonstrates my ability to transform fragmented procurement information into a structured data model that improves traceability, data consistency, and day-to-day supply chain operations.
 
 ---
 
